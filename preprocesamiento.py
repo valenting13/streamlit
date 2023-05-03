@@ -99,9 +99,10 @@ def preprocesamiento():
         st.divider()
         st.session_state.boton_pasos_no_realizados = st.button("Pulse aquí cuando haya terminado")
         if st.session_state.boton_pasos_no_realizados:
+            from sklearn.preprocessing import LabelEncoder
+            labelencoder = LabelEncoder()
             for i in st.session_state.data.select_dtypes(include='object').columns:
-                from sklearn.preprocessing import LabelEncoder
-                st.session_state.data[i] = LabelEncoder().fit_transform(st.session_state.data[i])
+                st.session_state.data[i] = labelencoder.fit_transform(st.session_state.data[i])
             from sklearn.preprocessing import StandardScaler
             standarscaler = StandardScaler()
             scaler = standarscaler.fit(st.session_state.data[["TotalRecargo"]])
