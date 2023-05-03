@@ -1,10 +1,9 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import StandardScaler
-import joblib
-from io import BytesIO
+
+
+
 
 @st.cache_data(persist="disk")
 def columnas():
@@ -18,6 +17,7 @@ def columnas():
                     columnas = data.columns
     return columnas
 def to_excel(df):
+    from io import BytesIO
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='openpyxl')
     df.to_excel(writer, index=False, sheet_name='Hoja1')
@@ -29,6 +29,7 @@ def prediccion():
     modelo_entrenado = st.file_uploader("Suba el Modelo Entrenado",type=["pkl"])
     
     if modelo_entrenado is not None:
+        import joblib
         carga_modelo = joblib.load(modelo_entrenado)
         datos_nuevos = st.sidebar.file_uploader("Suba los datos que desea predecir", type=["csv"])
         if datos_nuevos is not None:
@@ -113,9 +114,11 @@ def prediccion():
             st.write(dataset_nuevo)              
         
         for i in dataset_nuevo.select_dtypes(include='object').columns:
+            from sklearn.preprocessing import LabelEncoder
             dataset_nuevo[i] = LabelEncoder().fit_transform(dataset_nuevo[i])
         scaler = StandardScaler().fit(dataset_nuevo[["TotalRecargo"]])
         dataset_nuevo["TotalRecargo"] = scaler.transform(dataset_nuevo[["TotalRecargo"]])
+        from sklearn.preprocessing import StandardScaler
         scaler = StandardScaler().fit(dataset_nuevo[["RecargoMensual"]])
         dataset_nuevo["RecargoMensual"] = scaler.transform(dataset_nuevo[["RecargoMensual"]])
         
