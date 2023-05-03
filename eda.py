@@ -54,8 +54,6 @@ def eda():
         
         with c1:
             import plotly.graph_objects as go
-            import streamlit as st
-
             fig = go.Figure()
 
             fig.add_trace(go.Bar(
@@ -103,8 +101,6 @@ def eda():
 
         # Row C
         st.markdown('### Variables Nunéricas')
-        import plotly.graph_objects as go
-        import streamlit as st
         fig = go.Figure()
         
         for variable in data[seleccion_grafica_cate].unique():
@@ -123,8 +119,6 @@ def eda():
         )
 
         st.plotly_chart(fig)
-        import plotly.graph_objects as go
-        import streamlit as st
 
         fig = go.Figure()
 
