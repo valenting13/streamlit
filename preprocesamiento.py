@@ -105,6 +105,7 @@ def preprocesamiento():
             from sklearn.preprocessing import StandardScaler
             scaler = StandardScaler().fit(st.session_state.data[["TotalRecargo"]])
             st.session_state.data["TotalRecargo"] = scaler.transform(st.session_state.data[["TotalRecargo"]])
+            from sklearn.preprocessing import StandardScaler
             scaler = StandardScaler().fit(st.session_state.data[["RecargoMensual"]])
             st.session_state.data["RecargoMensual"] = scaler.transform(st.session_state.data[["RecargoMensual"]])
  
