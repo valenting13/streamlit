@@ -1,6 +1,6 @@
 streamlit
 pandas
 matplotlib
-plost
+plotly
 scikit-learn==1.2.2
 openpyxl
