@@ -1,15 +1,4 @@
 import streamlit as st
-
-from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import LinearSVC
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import confusion_matrix
-import joblib
-
-
-
     
 def input_entrenamiento(val1, val2):
     if val1 + val2 < 100:
@@ -59,6 +48,7 @@ def entrenamiento():
                     "fit_intercept": fit_intercept,
                     "solver": solver
                 }
+                from sklearn.linear_model import LogisticRegression
                 modelo_entrenar = LogisticRegression(penalty=penalty,C=C,fit_intercept=fit_intercept,solver=solver)
             case "Clasificador K-vecinos más Cercanos":
                 n_neighbors = st.sidebar.number_input("N neighbors",min_value=0,max_value=50,value=5)
@@ -72,7 +62,7 @@ def entrenamiento():
                     "algorithm": algorithm,
                     "p": p
                 }
-                
+                from sklearn.neighbors import KNeighborsClassifier
                 modelo_entrenar = KNeighborsClassifier(n_neighbors=n_neighbors,weights=weights,algorithm=algorithm,p=p)
             case "Clasificador Máquinas de Soporte Vectorial":
                 penalty = st.sidebar.selectbox("Penalty",("l2","l1"))
@@ -94,7 +84,7 @@ def entrenamiento():
                     "C":C,
                     "fit_intercept": fit_intercept
                 }
-                
+                from sklearn.svm import LinearSVC
                 modelo_entrenar = LinearSVC(penalty=penalty,loss=loss,C=C,fit_intercept=fit_intercept)
             case "Clasificador de Árboles de Decisión":
                 criterion = st.sidebar.selectbox("criterion",("gini","entropy","log_loss"))
@@ -110,7 +100,7 @@ def entrenamiento():
                     "max_depth":max_depth,
                     "min_samples_split": min_samples_split
                 }
-                
+                from sklearn.tree import DecisionTreeClassifier
                 modelo_entrenar = DecisionTreeClassifier(criterion=criterion,splitter=splitter,max_depth=max_depth,min_samples_split=min_samples_split)
             case "Clasificador de Bosque Aleatorio":
                 n_estimators = st.sidebar.slider("n_estimators",0,200,100)
@@ -126,7 +116,7 @@ def entrenamiento():
                     "max_depth":max_depth,
                     "min_samples_split": min_samples_split
                 }
-                
+                from sklearn.ensemble import RandomForestClassifier
                 modelo_entrenar = RandomForestClassifier(n_estimators=n_estimators,criterion=criterion,max_depth=max_depth,min_samples_split=min_samples_split)
             
         
@@ -161,6 +151,7 @@ def entrenar_modelo(data,test_perc,randomstate,modelo):
     import pandas as pd
     import plotly.figure_factory as ff
     from sklearn.model_selection import train_test_split
+    from sklearn.metrics import confusion_matrix
     
     x=data.drop("Abandono", axis=1)
     y=data["Abandono"]
