@@ -2,8 +2,6 @@
 def eda():
     import streamlit as st
     import pandas as pd
-    import matplotlib.pyplot as plt
-    import plost
     import plotly.graph_objects as go
     from io import StringIO
    
