@@ -2,6 +2,8 @@
 def eda():
     import streamlit as st
     import pandas as pd
+    import plotly.graph_objects as go
+    grafico = go.Figure()
     
     
    
@@ -54,6 +56,7 @@ def eda():
         
         with c1:
             import plotly.graph_objects as go
+            
             fig = go.Figure()
             import plotly.graph_objects as go
             fig.add_trace(go.Bar(
@@ -77,9 +80,8 @@ def eda():
 
         
         with c2:
-            import plotly.graph_objects as go
-            fig = go.Figure()
-            import plotly.graph_objects as go
+            
+            fig = grafico
             fig.add_trace(go.Pie(
                 labels=valores_categoricas.index,
                 values=valores_categoricas.values,
@@ -101,29 +103,23 @@ def eda():
 
         # Row C
         st.markdown('### Variables Nunéricas')
-        import plotly.graph_objects as go
-        fig = go.Figure()
+        fig = grafico
         
         for variable in data[seleccion_grafica_cate].unique():
-            import plotly.graph_objects as go
             fig.add_trace(go.Box(
                 x=data[seleccion_grafica_cate][data[seleccion_grafica_cate] == variable],
                 y=data[seleccion_grafica_nume][data[seleccion_grafica_cate] == variable],
                 hovertemplate='Género: %{x}<br>Edad: %{y}',
                     
             ))
-
         fig.update_layout(
             title=f"Gráfico Boxplot - {seleccion_grafica_cate}",
             xaxis_title=seleccion_grafica_cate,
             yaxis_title=seleccion_grafica_nume,
             font=dict(size=12)
         )
-
         st.plotly_chart(fig)
-        import plotly.graph_objects as go
-        fig = go.Figure()
-        import plotly.graph_objects as go
+        fig = grafico
         fig.add_trace(go.Histogram(
             x=valores_numericas,
             nbinsx=5,
