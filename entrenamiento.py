@@ -1,5 +1,5 @@
 import streamlit as st
-from sklearn.model_selection import train_test_split
+
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import LinearSVC
@@ -160,6 +160,7 @@ def entrenamiento():
 def entrenar_modelo(data,test_perc,randomstate,modelo):
     import pandas as pd
     import plotly.figure_factory as ff
+    from sklearn.model_selection import train_test_split
     
     x=data.drop("Abandono", axis=1)
     y=data["Abandono"]
