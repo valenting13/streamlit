@@ -103,10 +103,10 @@ def preprocesamiento():
                 from sklearn.preprocessing import LabelEncoder
                 st.session_state.data[i] = LabelEncoder().fit_transform(st.session_state.data[i])
             from sklearn.preprocessing import StandardScaler
-            scaler = StandardScaler().fit(st.session_state.data[["TotalRecargo"]])
+            standarscaler = StandardScaler()
+            scaler = standarscaler.fit(st.session_state.data[["TotalRecargo"]])
             st.session_state.data["TotalRecargo"] = scaler.transform(st.session_state.data[["TotalRecargo"]])
-            from sklearn.preprocessing import StandardScaler
-            scaler = StandardScaler().fit(st.session_state.data[["RecargoMensual"]])
+            scaler = standarscaler.fit(st.session_state.data[["RecargoMensual"]])
             st.session_state.data["RecargoMensual"] = scaler.transform(st.session_state.data[["RecargoMensual"]])
  
             
