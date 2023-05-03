@@ -2,7 +2,7 @@
 def eda():
     import streamlit as st
     import pandas as pd
-    import plotly.graph_objects as go
+    
     
    
     st.markdown(f"# Análisis Explotario de Datos")
@@ -53,7 +53,7 @@ def eda():
         
         
         with c1:
-            
+            import plotly.graph_objects as go
             fig = go.Figure()
 
             fig.add_trace(go.Bar(
@@ -77,7 +77,7 @@ def eda():
 
         
         with c2:
-            
+            import plotly.graph_objects as go
             fig = go.Figure()
 
             fig.add_trace(go.Pie(
@@ -101,6 +101,7 @@ def eda():
 
         # Row C
         st.markdown('### Variables Nunéricas')
+        import plotly.graph_objects as go
         fig = go.Figure()
         
         for variable in data[seleccion_grafica_cate].unique():
@@ -119,7 +120,7 @@ def eda():
         )
 
         st.plotly_chart(fig)
-
+        import plotly.graph_objects as go
         fig = go.Figure()
 
         fig.add_trace(go.Histogram(
