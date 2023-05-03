@@ -2,5 +2,5 @@ streamlit
 pandas
 matplotlib
 plost
-scikit-learn
+scikit-learn==1.2.2
 openpyxl
