@@ -2,10 +2,8 @@
 def eda():
     import streamlit as st
     import pandas as pd
-    import matplotlib.pyplot as plt
-    import plost
-    import plotly.graph_objects as go
-    from io import StringIO
+    
+    
    
     st.markdown(f"# Análisis Explotario de Datos")
     st.write("""
@@ -21,7 +19,8 @@ def eda():
         data = st.session_state.df
         seleccion_grafica_cate = st.sidebar.selectbox('Selecciona una Variable Categórica', list(data.select_dtypes(include='object').columns))
         seleccion_grafica_nume = st.sidebar.selectbox('Selecciona una Variable Numérica', list(data.select_dtypes(exclude='object').columns))
-
+        
+        from io import StringIO
         info = StringIO()
         data.info(buf=info)
         #Imprime La información
@@ -106,7 +105,6 @@ def eda():
         st.markdown('### Variables Nunéricas')
         import plotly.graph_objects as go
         import streamlit as st
-
         fig = go.Figure()
         
         for variable in data[seleccion_grafica_cate].unique():
