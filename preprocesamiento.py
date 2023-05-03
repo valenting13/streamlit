@@ -1,9 +1,9 @@
 def preprocesamiento():
     import streamlit as st
-    from sklearn.preprocessing import LabelEncoder
-    from sklearn.preprocessing import StandardScaler
-    from sklearn.impute import SimpleImputer
-    from sklearn.impute import KNNImputer
+    
+
+   
+    
     
 
     st.markdown("# Preprocesamiento de Datos")
@@ -82,11 +82,13 @@ def preprocesamiento():
                 st.write("")
                 boton_quitarnume = st.button("Reemplazar Nulos")
                 if boton_quitarnume:
-                    if seleccion_metodo_nume =="SimpleImputer":                         
+                    if seleccion_metodo_nume =="SimpleImputer": 
+                        from sklearn.impute import SimpleImputer
                         categorico = SimpleImputer(strategy=seleccion_tecnica_nume)
                         categorico.fit_transform(st.session_state.data[seleccion_nume])
                         st.write("Valores nulos reemplazados")
                     elif seleccion_metodo_nume == "KNNImputer":
+                        from sklearn.impute import KNNImputer
                         categorico = KNNImputer(n_neighbors=seleccion_knn)
                         categorico.fit_transform(st.session_state.data[seleccion_nume])
                         st.write("Valores nulos reemplazados")    
@@ -98,8 +100,9 @@ def preprocesamiento():
         st.session_state.boton_pasos_no_realizados = st.button("Pulse aquí cuando haya terminado")
         if st.session_state.boton_pasos_no_realizados:
             for i in st.session_state.data.select_dtypes(include='object').columns:
+                from sklearn.preprocessing import LabelEncoder
                 st.session_state.data[i] = LabelEncoder().fit_transform(st.session_state.data[i])
-                    
+            from sklearn.preprocessing import StandardScaler
             scaler = StandardScaler().fit(st.session_state.data[["TotalRecargo"]])
             st.session_state.data["TotalRecargo"] = scaler.transform(st.session_state.data[["TotalRecargo"]])
             scaler = StandardScaler().fit(st.session_state.data[["RecargoMensual"]])
