@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-from powerbiclient import QuickVisualize, get_dataset_config, Report
-from powerbiclient.authentication import DeviceCodeLoginAuthentication
 
 def reporte(): 
     uploaded_file = st.file_uploader("Suba su archivo Excel aquí", type=["xlsx", "xls"])
