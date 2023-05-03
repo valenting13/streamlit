@@ -55,7 +55,7 @@ def eda():
         with c1:
             import plotly.graph_objects as go
             fig = go.Figure()
-
+            import plotly.graph_objects as go
             fig.add_trace(go.Bar(
                 x=valores_categoricas.index,
                 y=valores_categoricas,
@@ -79,7 +79,7 @@ def eda():
         with c2:
             import plotly.graph_objects as go
             fig = go.Figure()
-
+            import plotly.graph_objects as go
             fig.add_trace(go.Pie(
                 labels=valores_categoricas.index,
                 values=valores_categoricas.values,
@@ -105,6 +105,7 @@ def eda():
         fig = go.Figure()
         
         for variable in data[seleccion_grafica_cate].unique():
+            import plotly.graph_objects as go
             fig.add_trace(go.Box(
                 x=data[seleccion_grafica_cate][data[seleccion_grafica_cate] == variable],
                 y=data[seleccion_grafica_nume][data[seleccion_grafica_cate] == variable],
@@ -122,7 +123,7 @@ def eda():
         st.plotly_chart(fig)
         import plotly.graph_objects as go
         fig = go.Figure()
-
+        import plotly.graph_objects as go
         fig.add_trace(go.Histogram(
             x=valores_numericas,
             nbinsx=5,
