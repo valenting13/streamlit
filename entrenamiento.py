@@ -6,8 +6,7 @@ from sklearn.svm import LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import confusion_matrix
-import joblib
-
+import pickle
 
 
     
@@ -16,6 +15,14 @@ def input_entrenamiento(val1, val2):
         diff = 100 - (val1 + val2)
         val2 += diff
     return val1, val2
+
+
+def convert_model_to_bytes(model):
+    model_bytes = pickle.dumps(model)
+    return model_bytes
+
+
+
     
 def entrenamiento():
     st.markdown("# Preprocesamiento de Datos")
@@ -145,12 +152,10 @@ def entrenamiento():
         st.session_state.boton_entrenar = st.button("Entrenar el modelo")
         if st.session_state.boton_entrenar:
             entrenar_modelo(data,test_perc,randomstate,modelo_entrenar)
-        st.session_state.boton_guardar = st.button("Guardar Modelo")
-        if st.session_state.boton_guardar:
-            st.success("Modelo Guardado Correctamente")
-            import pickle
-                # Guardamos el modelo entrenado en un archivo
-            pickle.dump(entrenar_modelo(data,test_perc,randomstate,modelo_entrenar), open('modelo_entrenado.pkl', 'wb'))
+            model_data = convert_model_to_bytes(entrenar_modelo(data,test_perc,randomstate,modelo_entrenar))
+            if st.download_button("Descargar modelo PKL", model_data, file_name="modelo_entrenado.pkl", mime="application/octet-stream"):
+                st.success("Modelo Guardado Correctamente")
+            
         if"df" in st.session_state:
             st.markdown(f"Archivo previamente subido: **{st.session_state.uploaded_file.name}**")
             st.write(st.session_state.df)
