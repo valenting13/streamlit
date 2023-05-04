@@ -8,16 +8,15 @@ import joblib
 from io import BytesIO
 
 @st.cache_data(persist="disk")
-def columnas():
-    if "data" in st.session_state:
-        if "boton_eliminar" in st.session_state:
-            if st.session_state.boton_eliminar:
-                data=st.session_state.data
-                columnas = data.columns
-                if st.session_state.boton_eliminar ==False:
-                    data=st.session_state.data
-                    columnas = data.columns
-    return columnas
+def obtener_columnas():
+    if "data" in st.session_state and "boton_eliminar" in st.session_state:
+        data = st.session_state.data
+        if st.session_state.boton_eliminar:
+            columnas = data.columns
+        else:
+            columnas = data.columns
+        return columnas
+    return None
 def to_excel(df):
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='openpyxl')
