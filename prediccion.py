@@ -21,7 +21,7 @@ def to_excel(df):
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='openpyxl')
     df.to_excel(writer, index=False, sheet_name='Hoja1')
-    writer.save()
+    writer.book.save(output)
     output.seek(0)
     return output
 
