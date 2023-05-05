@@ -5,11 +5,11 @@ def eda():
     import plotly.graph_objects as go
     from io import StringIO
    
-    st.markdown(f"# Análisis Explotario de Datos")
+    st.markdown("<h1 style='text-align: center;'>Análisis Explotario de Datos</h1>", unsafe_allow_html=True)
     st.write("""
         En este análisis exploratorio de datos, nos enfocaremos en 
         comprender las variables y patrones subyacentes que 
-        afectan la retención de clientes. 
+        afectan el abandono de los clientes. 
     """)
     st.divider()
 
@@ -20,19 +20,7 @@ def eda():
         seleccion_grafica_cate = st.sidebar.selectbox('Selecciona una Variable Categórica', list(data.select_dtypes(include='object').columns))
         seleccion_grafica_nume = st.sidebar.selectbox('Selecciona una Variable Numérica', list(data.select_dtypes(exclude='object').columns))
 
-        info = StringIO()
-        data.info(buf=info)
-        #Imprime La información
-        st.text(str(info.getvalue()))
         
-        st.metric("El número de filas es:",data.shape[0])
-        
-        st.write(data.isnull().sum().sort_values(ascending=False))
-        st.write(data.duplicated().sum())
-        st.write(data.nunique())
-        st.write(data.select_dtypes(include='object').shape[1])
-        st.write(data.describe().round(2))
-        st.write(data.corr(numeric_only=True))
         
         
         # Primera fila
@@ -143,6 +131,21 @@ def eda():
         )
 
         st.plotly_chart(fig)
+        
+        
+        info = StringIO()
+        data.info(buf=info)
+        #Imprime La información
+        st.text(str(info.getvalue()))
+        
+        st.metric("El número de filas es:",data.shape[0])
+        
+        st.write(data.isnull().sum().sort_values(ascending=False))
+        st.write(data.duplicated().sum())
+        st.write(data.nunique())
+        st.write(data.select_dtypes(include='object').shape[1])
+        st.write(data.describe().round(2))
+        st.write(data.corr(numeric_only=True))
 
 
         
