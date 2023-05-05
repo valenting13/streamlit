@@ -138,11 +138,7 @@ def cargar_archivo():
             ¡Buena suerte en tus esfuerzos para mejorar la retención de clientes y mantener a tus clientes satisfechos!
             """
         )
-        col1, col2, col3 = st.columns([1, 2, 1])
-
-        with col2:
-            gif = Image.open("assets/man-say-hello.gif")
-            st.image(gif, width=300)
+       
 
 
 
