@@ -113,8 +113,7 @@ def prediccion():
                 TotalRecargo = st.sidebar.number_input('¿Eres socio?',0.00,10000.00,1000.00)
                 datos_dicc["TotalRecargo"]=TotalRecargo
 
-            dataset_nuevo = pd.DataFrame(datos_dicc, index=[0])
-            st.write(dataset_nuevo)              
+            dataset_nuevo = pd.DataFrame(datos_dicc, index=[0])             
         
         for i in dataset_nuevo.select_dtypes(include='object').columns:
             dataset_nuevo[i] = LabelEncoder().fit_transform(dataset_nuevo[i])
