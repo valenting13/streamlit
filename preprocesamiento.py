@@ -6,8 +6,8 @@ def preprocesamiento():
     from sklearn.impute import KNNImputer
     
 
-    st.markdown("# Preprocesamiento de Datos")
-    st.markdown("<h1 style='text-align: center; color: red;'>Some title</h1>", unsafe_allow_html=True)
+
+    st.markdown("<h1 style='text-align: center'>Preprocesamiento de Datos</h1>", unsafe_allow_html=True)
 
 
     if "df" not in st.session_state:
