@@ -9,14 +9,7 @@ from reporte import reporte
 st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
 
-configuracion="""
-<style>
-#MainMenu {visibility:hidden;}
-footer {visibility:hidden;}
-header {visibility:hidden;}
-</style>
-"""
-st.markdown(configuracion,unsafe_allow_html=True)
+
 nombresPaginas = {
     "Inicio": cargar_archivo,
     "Análisis Exploratorio de Datos": eda,
