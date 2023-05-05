@@ -166,9 +166,12 @@ def prediccion():
         
         carga_modelo = pickle.load(open('modelo_entrenado.pkl', 'rb'))
         if datos_nuevos is not None:
+            column = ["PersonaMayor","Socio","Dependientes","Permanencia","ServicioTelefonico","VariasLineas","ServicioInternet",
+                      "SeguridadLinea","CopiaSeguridadLinea","ProteccionDispositivo","ServicioTecnico","ServicioTV","ServicioPeliculas",
+                      "Contrato","FacturacionElectronica","MetodoPago","RecargoMensual","TotalRecargo"]
             dataset_ingresado = pd.read_csv(datos_nuevos)
             st.write(dataset_ingresado)
-            columnas_comunes = dataset_ingresado.columns.intersection(columnas())
+            columnas_comunes = dataset_ingresado.columns.intersection(column)
             dataset_nuevo = dataset_ingresado[columnas_comunes]
             st.write(dataset_nuevo)
             
